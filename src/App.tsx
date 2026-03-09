@@ -222,10 +222,81 @@ const Manifesto = () => {
   );
 };
 
+const MigrationMapBackground = () => (
+  <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none flex items-center justify-center">
+    {/* Soft Radial Gradient for depth behind the polaroids */}
+    <div className="absolute top-[60%] lg:top-1/2 left-[50%] lg:left-[75%] -translate-x-1/2 -translate-y-1/2 w-[600px] lg:w-[900px] h-[600px] lg:h-[900px] bg-main-red rounded-full blur-[100px] lg:blur-[150px] opacity-[0.05] md:opacity-[0.03]"></div>
+
+    {/* World Map Silhouette Background */}
+    <div className="absolute inset-0 bg-[url('/world-map.png')] bg-cover bg-center md:bg-contain bg-no-repeat opacity-[0.08] mix-blend-screen" style={{ maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 80%)', WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, transparent 80%)' }}></div>
+
+    <svg className="absolute w-[250%] md:w-[120%] h-full opacity-60 mix-blend-screen" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="flight-path" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#4B5563" stopOpacity="0.1" />
+          <stop offset="100%" stopColor="#D90429" stopOpacity="1" />
+        </linearGradient>
+        <filter id="dot-glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+      </defs>
+
+      <g transform="translate(150, 50)">
+        {/* Flight Routes - LATAM to Global */}
+        <g fill="none" stroke="url(#flight-path)" strokeWidth="1.5" strokeDasharray="4 4" className="opacity-70 animate-pulse">
+          {/* BOG (250, 240) -> MIA (220, 160) */}
+          <path d="M250 240 Q 260 190 220 160" />
+          {/* BOG (250, 240) -> MAD (490, 120) */}
+          <path d="M250 240 Q 350 140 490 120" />
+
+          {/* MDE (245, 250) -> YYZ (250, 70) */}
+          <path d="M245 250 Q 280 150 250 70" />
+
+          {/* LIM (220, 310) -> MIA (220, 160) */}
+          <path d="M220 310 Q 180 230 220 160" />
+          {/* LIM (220, 310) -> LIS (470, 135) */}
+          <path d="M220 310 Q 340 250 470 135" />
+
+          {/* EZE (280, 440) -> MAD (490, 120) */}
+          <path d="M280 440 Q 450 300 490 120" />
+          {/* EZE (280, 440) -> MIA (220, 160) */}
+          <path d="M280 440 Q 350 280 220 160" />
+        </g>
+
+        {/* Cities - LATAM Origins (Grey) */}
+        <g fill="#9CA3AF" opacity="0.6">
+          <circle cx="250" cy="240" r="2.5" /> {/* BOG */}
+          <circle cx="245" cy="250" r="2.5" /> {/* MDE */}
+          <circle cx="220" cy="310" r="2.5" /> {/* LIM */}
+          <circle cx="280" cy="440" r="2.5" /> {/* EZE */}
+        </g>
+
+        {/* Cities - Destinations (Glowing Red) */}
+        <g fill="#D90429" filter="url(#dot-glow)">
+          <circle cx="220" cy="160" r="3.5" /> {/* MIA */}
+          <circle cx="250" cy="70" r="3.5" />  {/* YYZ */}
+          <circle cx="490" cy="120" r="3.5" /> {/* MAD */}
+          <circle cx="470" cy="135" r="3.5" /> {/* LIS */}
+        </g>
+
+        {/* Destination Labels */}
+        <g fill="#FFFFFF" fontSize="10" fontFamily="sans-serif" opacity="0.4" letterSpacing="1">
+          <text x="200" y="150">MIA</text>
+          <text x="260" y="65">YYZ</text>
+          <text x="500" y="115">MAD</text>
+          <text x="480" y="150">LIS</text>
+        </g>
+      </g>
+    </svg>
+  </div>
+);
+
 const Authority = () => {
   return (
-    <section id="autoridad" className="w-full py-8 md:py-16 px-4 bg-bg-elevated relative z-10 border-y border-white/5">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+    <section id="autoridad" className="w-full py-8 md:py-16 px-4 bg-bg-elevated relative z-10 border-y border-white/5 overflow-hidden">
+      <MigrationMapBackground />
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center relative z-10">
         <div className="order-2 lg:order-1 flex flex-col gap-6 md:gap-8">
           <h2 className="font-serif text-4xl md:text-5xl text-main-red">No fue suerte.</h2>
           <div className="flex flex-col gap-6 text-text-muted font-sans text-lg leading-relaxed">
