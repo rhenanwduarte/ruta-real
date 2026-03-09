@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { CheckCircle2, ShieldCheck, Lock, CreditCard } from 'lucide-react';
+import { CheckCircle2, ShieldCheck, Lock, CreditCard, Compass } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -209,12 +209,17 @@ const PainAndBreak = () => {
 
 const Manifesto = () => {
   return (
-    <section id="manifesto" className="w-full py-40 px-4 bg-bg-deep relative overflow-hidden flex flex-col items-center justify-center">
+    <section id="manifesto" className="w-full py-16 md:py-24 px-4 bg-bg-deep relative overflow-hidden flex flex-col items-center justify-center">
       {/* Organic texture parallax-like effect */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(217,4,41,0.05)_0%,rgba(11,11,13,0)_70%)] pointer-events-none"></div>
 
-      <div className="relative z-10 max-w-3xl mx-auto text-center flex flex-col items-center gap-12">
-        <h2 className="font-serif text-4xl md:text-6xl text-text-main leading-tight">
+      {/* Contextual Element Theme */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none z-0">
+        <Compass className="w-[280px] h-[280px] md:w-[500px] md:h-[500px]" />
+      </div>
+
+      <div className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center gap-6">
+        <h2 className="font-serif text-3xl sm:text-4xl md:text-6xl text-text-main leading-tight mb-4">
           La mayoría improvisa.<br />
           <span className="text-hover-red italic">Los estratégicos se preparan.</span>
         </h2>
@@ -225,9 +230,9 @@ const Manifesto = () => {
 
 const Authority = () => {
   return (
-    <section id="autoridad" className="w-full py-32 px-4 bg-bg-elevated relative z-10 border-y border-white/5">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <div className="order-2 lg:order-1 flex flex-col gap-8">
+    <section id="autoridad" className="w-full py-12 md:py-24 px-4 bg-bg-elevated relative z-10 border-y border-white/5">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+        <div className="order-2 lg:order-1 flex flex-col gap-6 md:gap-8">
           <h2 className="font-serif text-4xl md:text-5xl text-main-red">No fue suerte.</h2>
           <div className="flex flex-col gap-6 text-text-muted font-sans text-lg leading-relaxed">
             <p>
