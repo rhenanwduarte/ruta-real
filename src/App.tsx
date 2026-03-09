@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { CheckCircle2, ShieldCheck, Lock, CreditCard, Compass } from 'lucide-react';
+import { CheckCircle2, ShieldCheck, Lock, CreditCard } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -164,37 +164,34 @@ const Hero = () => {
 
 const PainAndBreak = () => {
   return (
-    <section id="problema" className="w-full py-32 px-4 bg-bg-deep border-t border-white/5 relative z-10 overflow-hidden">
-      {/* Side Brutalist Aesthetic Elements */}
-      <div className="hidden md:block absolute top-0 left-0 w-full md:w-[40%] h-full z-0 opacity-40 pointer-events-none mix-blend-screen" style={{ maskImage: 'linear-gradient(to right, black 20%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to right, black 20%, transparent 100%)' }}>
-        <img src="/shape-left.png" alt="" className="w-full h-full object-cover object-left" />
-      </div>
-      <div className="absolute top-0 right-0 w-full md:w-[40%] h-full z-0 opacity-40 pointer-events-none mix-blend-screen" style={{ maskImage: 'linear-gradient(to left, black 20%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to left, black 20%, transparent 100%)' }}>
-        <img src="/shape-right.png" alt="" className="w-full h-full object-cover object-right" />
+    <section id="problema" className="w-full py-16 md:py-24 px-4 bg-bg-deep border-t border-white/5 relative z-10 overflow-hidden group">
+      {/* Smoky Generated Image Background with Hover Effect */}
+      <div className="absolute inset-0 z-0 transition-transform duration-1000 ease-out group-hover:scale-[1.02]">
+        <div className="absolute inset-0 bg-[url('/smoke.png')] bg-cover bg-center opacity-30 mix-blend-screen transition-opacity duration-700 group-hover:opacity-50" style={{ maskImage: 'radial-gradient(circle at center, black 40%, transparent 80%)', WebkitMaskImage: 'radial-gradient(circle at center, black 40%, transparent 80%)' }}></div>
       </div>
 
       <div className="max-w-4xl mx-auto flex flex-col items-center relative z-10">
-        <h2 className="font-serif text-3xl md:text-5xl text-center leading-tight mb-16 text-text-main">
+        <h2 className="font-serif text-3xl md:text-5xl text-center leading-tight mb-10 text-text-main">
           El problema no es salir.<br />
           <span className="text-hover-red italic">Es salir sin estrategia.</span>
         </h2>
 
-        <div className="w-full max-w-2xl flex flex-col gap-6">
-          <div className="bg-bg-elevated p-6 rounded-[2.5rem] border border-white/5 flex items-start gap-4">
+        <div className="w-full max-w-2xl flex flex-col gap-3 md:gap-4">
+          <div className="bg-bg-elevated p-4 md:p-5 rounded-[2rem] border border-white/5 flex items-start gap-4 transition-colors duration-300 hover:border-main-red/30 hover:bg-white/[0.03]">
             <div className="w-2 h-2 rounded-full bg-main-red mt-2 shrink-0"></div>
-            <p className="font-sans text-text-muted text-lg">Elegir un país por emoción y no por viabilidad real.</p>
+            <p className="font-sans text-text-muted text-[15px] md:text-lg">Elegir un país por emoción y no por viabilidad real.</p>
           </div>
-          <div className="bg-bg-elevated p-6 rounded-[2.5rem] border border-white/5 flex items-start gap-4">
+          <div className="bg-bg-elevated p-4 md:p-5 rounded-[2rem] border border-white/5 flex items-start gap-4 transition-colors duration-300 hover:border-main-red/30 hover:bg-white/[0.03]">
             <div className="w-2 h-2 rounded-full bg-main-red mt-2 shrink-0"></div>
-            <p className="font-sans text-text-muted text-lg">Subestimar los costos reales de instalación a largo plazo.</p>
+            <p className="font-sans text-text-muted text-[15px] md:text-lg">Subestimar los costos reales de instalación a largo plazo.</p>
           </div>
-          <div className="bg-bg-elevated p-6 rounded-[2.5rem] border border-white/5 flex items-start gap-4">
+          <div className="bg-bg-elevated p-4 md:p-5 rounded-[2rem] border border-white/5 flex items-start gap-4 transition-colors duration-300 hover:border-main-red/30 hover:bg-white/[0.03]">
             <div className="w-2 h-2 rounded-full bg-main-red mt-2 shrink-0"></div>
-            <p className="font-sans text-text-muted text-lg">Depender totalmente de terceros e intermediarios que no velan por tu futuro.</p>
+            <p className="font-sans text-text-muted text-[15px] md:text-lg">Depender totalmente de terceros e intermediarios que no velan por tu futuro.</p>
           </div>
-          <div className="bg-bg-elevated p-6 rounded-[2.5rem] border border-white/5 flex items-start gap-4">
+          <div className="bg-bg-elevated p-4 md:p-5 rounded-[2rem] border border-white/5 flex items-start gap-4 transition-colors duration-300 hover:border-main-red/30 hover:bg-white/[0.03]">
             <div className="w-2 h-2 rounded-full bg-main-red mt-2 shrink-0"></div>
-            <p className="font-sans text-text-muted text-lg">Decidir sin estructura legal o financiera clara.</p>
+            <p className="font-sans text-text-muted text-[15px] md:text-lg">Decidir sin estructura legal o financiera clara.</p>
           </div>
         </div>
 
@@ -209,13 +206,10 @@ const PainAndBreak = () => {
 
 const Manifesto = () => {
   return (
-    <section id="manifesto" className="w-full py-16 md:py-24 px-4 bg-bg-deep relative overflow-hidden flex flex-col items-center justify-center">
-      {/* Organic texture parallax-like effect */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(217,4,41,0.05)_0%,rgba(11,11,13,0)_70%)] pointer-events-none"></div>
-
-      {/* Contextual Element Theme */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none z-0">
-        <Compass className="w-[280px] h-[280px] md:w-[500px] md:h-[500px]" />
+    <section id="manifesto" className="w-full py-12 md:py-16 px-4 bg-bg-deep relative overflow-hidden flex flex-col items-center justify-center group">
+      {/* Smoky Background */}
+      <div className="absolute inset-0 z-0 transition-transform duration-[1.5s] ease-in-out group-hover:scale-[1.05]">
+        <div className="absolute top-1/2 left-1/2 w-[150%] md:w-full h-full -translate-x-1/2 -translate-y-1/2 bg-[url('/smoke.png')] bg-cover bg-center opacity-20 mix-blend-screen transition-opacity duration-1000 group-hover:opacity-40" style={{ maskImage: 'radial-gradient(ellipse at center, black 30%, transparent 70%)', WebkitMaskImage: 'radial-gradient(ellipse at center, black 30%, transparent 70%)' }}></div>
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center gap-6">
@@ -230,7 +224,7 @@ const Manifesto = () => {
 
 const Authority = () => {
   return (
-    <section id="autoridad" className="w-full py-12 md:py-24 px-4 bg-bg-elevated relative z-10 border-y border-white/5">
+    <section id="autoridad" className="w-full py-8 md:py-16 px-4 bg-bg-elevated relative z-10 border-y border-white/5">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
         <div className="order-2 lg:order-1 flex flex-col gap-6 md:gap-8">
           <h2 className="font-serif text-4xl md:text-5xl text-main-red">No fue suerte.</h2>
