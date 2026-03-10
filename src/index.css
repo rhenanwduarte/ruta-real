@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-deep: #0A0A0C;
+  --color-bg-deep: #05070c;
   --color-bg-elevated: #1A1A1F;
   --color-main-red: #D90429;
   --color-hover-red: #B00322;

@@ -104,21 +104,39 @@ const Hero = () => {
   };
 
   return (
-    <section ref={container} className="relative w-full h-[100dvh] bg-bg-deep flex flex-col items-center justify-center overflow-hidden">
+    <section ref={container} className="relative w-full h-[100dvh] bg-[#020305] flex flex-col items-center justify-center overflow-hidden">
       {/* Base strategic UI: Grid + global ambiance */}
       <div className="absolute inset-0 grid-pattern opacity-100 mix-blend-overlay hero-base"></div>
 
-      {/* Cinematic Right-Aligned Image Overlay */}
-      <div className="absolute top-0 right-0 w-full md:w-[65%] h-full z-0 hero-base pointer-events-none" style={{ maskImage: 'linear-gradient(to right, transparent 0%, black 60%)', WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 60%)' }}>
-        <img src="/hero-bg.png" alt="" className="w-full h-full object-cover object-center opacity-[0.55] mix-blend-luminosity grayscale" />
-        <div className="absolute inset-0 bg-gradient-to-t from-bg-deep via-transparent to-bg-deep opacity-80"></div>
+      {/* Cinematic Airplane Responsive Background */}
+      <div className="absolute inset-0 z-0 hero-base pointer-events-none">
+        <picture>
+          <source media="(min-width: 768px)" srcSet="/airplane-desktop.jpg.png" />
+          <img
+            src="/airplane-mobile.jpg.png"
+            alt="Cinematic Airplane Background"
+            className="w-full h-full object-cover object-center"
+            style={{ filter: 'contrast(1.1) saturate(0.8)' }}
+          />
+        </picture>
+
+        {/* Reduce blue tones & enhance deep red tones */}
+        <div className="absolute inset-0 bg-[#400000] mix-blend-multiply opacity-60"></div>
         <div className="absolute inset-0 bg-main-red mix-blend-overlay opacity-30"></div>
+
+        {/* Subtle black overlay (40-60%) */}
+        <div className="absolute inset-0 bg-black/50"></div>
+
+        {/* Soft vignette around edges */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_30%,_#000000_100%)] opacity-80"></div>
+
+        {/* Blend smoothly with sections above and below */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#020305] opacity-100"></div>
       </div>
 
-      {/* Thin horizontal golden line */}
-      <div className="absolute top-1/2 left-0 w-full h-[1px] bg-main-red opacity-50 -translate-y-[200%] md:-translate-y-1/2 z-0 hero-base hidden md:block"></div>
 
-      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto flex flex-col items-center justify-center w-full h-full pt-12 md:pt-16">
+
+      <div className="relative z-10 text-center px-4 max-w-7xl mx-auto flex flex-col items-center justify-center w-full h-full pt-12 md:pt-16">
 
         <h1 className="flex flex-col items-center justify-center w-full relative z-10">
           <div className="font-sans text-xs md:text-sm lg:text-base text-text-muted/80 font-semibold tracking-[0.25em] uppercase mb-4 relative z-20">
@@ -131,14 +149,14 @@ const Hero = () => {
           </div>
         </h1>
 
-        <div className="hero-sub mt-4 md:mt-8 max-w-2xl px-2 relative z-20">
-          <p className="font-sans text-xl md:text-3xl lg:text-[2rem] text-text-main font-medium leading-[1.3] drop-shadow-md">
+        <div className="hero-sub mt-4 md:mt-8 max-w-4xl px-2 relative z-20">
+          <p className="font-sans text-xl md:text-3xl lg:text-[2.5rem] text-text-main font-medium leading-[1.3] drop-shadow-md">
             Podrías estar a punto de perder miles<br className="hidden md:block" />
             por una decisión emocional mal calculada.
           </p>
         </div>
 
-        <div className="hero-micro mt-8 md:mt-10 mb-12 relative z-20">
+        <div className="hero-micro mt-8 md:mt-12 mb-12 relative z-20">
           <p className="font-sans text-sm md:text-lg text-text-muted/70 leading-relaxed italic tracking-wide">
             La mayoría no fracasa por falta de valor.<br />
             Fracasa por falta de estrategia.
@@ -164,41 +182,43 @@ const Hero = () => {
 
 const PainAndBreak = () => {
   return (
-    <section id="problema" className="w-full py-16 md:py-24 px-4 bg-bg-deep border-t border-white/5 relative z-10 overflow-hidden group">
+    <section id="problema" className="w-full py-16 md:py-24 px-4 bg-[#020305] relative z-10 overflow-hidden group">
       {/* Smoky Generated Image Background with Hover Effect */}
       <div className="absolute inset-0 z-0 transition-transform duration-1000 ease-out group-hover:scale-[1.02]">
         <div className="absolute inset-0 bg-[url('/smoke.png')] bg-cover bg-center opacity-30 mix-blend-screen transition-opacity duration-700 group-hover:opacity-50" style={{ maskImage: 'radial-gradient(circle at center, black 40%, transparent 80%)', WebkitMaskImage: 'radial-gradient(circle at center, black 40%, transparent 80%)' }}></div>
       </div>
 
-      <div className="max-w-4xl mx-auto flex flex-col items-center relative z-10">
-        <h2 className="font-serif text-3xl md:text-5xl text-center leading-tight mb-10 text-text-main">
+      {/* Top Blend Gradient to fuse with Hero section seamlessly */}
+      <div className="absolute top-0 left-0 w-full h-48 bg-gradient-to-b from-[#020305] to-transparent z-0 pointer-events-none"></div>
+
+      <div className="max-w-6xl mx-auto flex flex-col items-center relative z-10">
+        <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl text-center leading-tight mb-14 text-text-main">
           El problema no es salir.<br />
           <span className="text-hover-red italic">Es salir sin estrategia.</span>
         </h2>
 
-        <div className="w-full max-w-2xl flex flex-col gap-3 md:gap-4">
-          <div className="bg-bg-elevated p-4 md:p-5 rounded-[2rem] border border-white/5 flex items-start gap-4 transition-colors duration-300 hover:border-main-red/30 hover:bg-white/[0.03]">
-            <div className="w-2 h-2 rounded-full bg-main-red mt-2 shrink-0"></div>
-            <p className="font-sans text-text-muted text-[15px] md:text-lg">Elegir un país por emoción y no por viabilidad real.</p>
+        <div className="w-full max-w-4xl flex flex-col gap-4 md:gap-5">
+          <div className="bg-bg-elevated p-5 md:p-6 lg:p-8 rounded-[2rem] md:rounded-[2.5rem] border border-white/5 flex items-start gap-4 md:gap-6 transition-colors duration-300 hover:border-main-red/30 hover:bg-white/[0.03]">
+            <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-main-red mt-2 shrink-0 shadow-[0_0_10px_rgba(217,4,41,0.5)]"></div>
+            <p className="font-sans text-text-muted text-[15px] md:text-xl lg:text-2xl leading-relaxed">Elegir un país por emoción y no por viabilidad real.</p>
           </div>
-          <div className="bg-bg-elevated p-4 md:p-5 rounded-[2rem] border border-white/5 flex items-start gap-4 transition-colors duration-300 hover:border-main-red/30 hover:bg-white/[0.03]">
-            <div className="w-2 h-2 rounded-full bg-main-red mt-2 shrink-0"></div>
-            <p className="font-sans text-text-muted text-[15px] md:text-lg">Subestimar los costos reales de instalación a largo plazo.</p>
+          <div className="bg-bg-elevated p-5 md:p-6 lg:p-8 rounded-[2rem] md:rounded-[2.5rem] border border-white/5 flex items-start gap-4 md:gap-6 transition-colors duration-300 hover:border-main-red/30 hover:bg-white/[0.03]">
+            <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-main-red mt-2 shrink-0 shadow-[0_0_10px_rgba(217,4,41,0.5)]"></div>
+            <p className="font-sans text-text-muted text-[15px] md:text-xl lg:text-2xl leading-relaxed">Subestimar los costos reales de instalación a largo plazo.</p>
           </div>
-          <div className="bg-bg-elevated p-4 md:p-5 rounded-[2rem] border border-white/5 flex items-start gap-4 transition-colors duration-300 hover:border-main-red/30 hover:bg-white/[0.03]">
-            <div className="w-2 h-2 rounded-full bg-main-red mt-2 shrink-0"></div>
-            <p className="font-sans text-text-muted text-[15px] md:text-lg">Depender totalmente de terceros e intermediarios que no velan por tu futuro.</p>
+          <div className="bg-bg-elevated p-5 md:p-6 lg:p-8 rounded-[2rem] md:rounded-[2.5rem] border border-white/5 flex items-start gap-4 md:gap-6 transition-colors duration-300 hover:border-main-red/30 hover:bg-white/[0.03]">
+            <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-main-red mt-2 shrink-0 shadow-[0_0_10px_rgba(217,4,41,0.5)]"></div>
+            <p className="font-sans text-text-muted text-[15px] md:text-xl lg:text-2xl leading-relaxed">Depender totalmente de terceros e intermediarios que no velan por tu futuro.</p>
           </div>
-          <div className="bg-bg-elevated p-4 md:p-5 rounded-[2rem] border border-white/5 flex items-start gap-4 transition-colors duration-300 hover:border-main-red/30 hover:bg-white/[0.03]">
-            <div className="w-2 h-2 rounded-full bg-main-red mt-2 shrink-0"></div>
-            <p className="font-sans text-text-muted text-[15px] md:text-lg">Decidir sin estructura legal o financiera clara.</p>
+          <div className="bg-bg-elevated p-5 md:p-6 lg:p-8 rounded-[2rem] md:rounded-[2.5rem] border border-white/5 flex items-start gap-4 md:gap-6 transition-colors duration-300 hover:border-main-red/30 hover:bg-white/[0.03]">
+            <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-main-red mt-2 shrink-0 shadow-[0_0_10px_rgba(217,4,41,0.5)]"></div>
+            <p className="font-sans text-text-muted text-[15px] md:text-xl lg:text-2xl leading-relaxed">Decidir sin estructura legal o financiera clara.</p>
           </div>
         </div>
 
-        <div className="mt-20 text-center font-sans text-xl text-text-main font-medium italic">
+        <div className="mt-24 text-center font-sans text-2xl lg:text-3xl text-text-main font-medium italic pb-12 opacity-90 drop-shadow-md">
           "Salir del país no es difícil. Hacerlo mal sí."
         </div>
-        <div className="w-px h-24 bg-gradient-to-b from-main-red/50 to-transparent mt-12"></div>
       </div>
     </section>
   );
@@ -206,14 +226,37 @@ const PainAndBreak = () => {
 
 const Manifesto = () => {
   return (
-    <section id="manifesto" className="w-full py-12 md:py-16 px-4 bg-bg-deep relative overflow-hidden flex flex-col items-center justify-center group">
-      {/* Smoky Background */}
-      <div className="absolute inset-0 z-0 transition-transform duration-[1.5s] ease-in-out group-hover:scale-[1.05]">
-        <div className="absolute top-1/2 left-1/2 w-[150%] md:w-full h-full -translate-x-1/2 -translate-y-1/2 bg-[url('/smoke.png')] bg-cover bg-center opacity-20 mix-blend-screen transition-opacity duration-1000 group-hover:opacity-40" style={{ maskImage: 'radial-gradient(ellipse at center, black 30%, transparent 70%)', WebkitMaskImage: 'radial-gradient(ellipse at center, black 30%, transparent 70%)' }}></div>
+    <section id="manifesto" className="w-full py-12 md:py-16 px-4 bg-[#020305] relative overflow-hidden flex flex-col items-center justify-center group">
+      {/* Base dark tone matching the site */}
+      <div className="absolute inset-0 bg-[#020305] z-0"></div>
+
+      {/* Atmospheric Texture Background with Intense Red Tint */}
+      <div className="absolute inset-0 z-0 transition-transform duration-[1.5s] ease-in-out group-hover:scale-[1.05] pointer-events-none">
+
+        {/* Red Tint Overlay for the smoke */}
+        <div className="absolute top-1/2 left-1/2 w-[150%] md:w-full h-full -translate-x-1/2 -translate-y-1/2 bg-[#D90429] opacity-20 mix-blend-multiply z-0"></div>
+
+        <div
+          className="absolute top-1/2 left-1/2 w-[150%] md:w-full h-full -translate-x-1/2 -translate-y-1/2 bg-[url('/smoke.png')] bg-cover bg-center opacity-[0.25] mix-blend-screen transition-opacity duration-1000 group-hover:opacity-[0.35]"
+          style={{
+            maskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,1) 15%, transparent 75%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,1) 15%, transparent 75%)'
+          }}
+        ></div>
       </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center gap-6">
-        <h2 className="font-serif text-3xl sm:text-4xl md:text-6xl text-text-main leading-tight mb-4">
+      {/* Deep Red Strong Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#D90429] rounded-full blur-[100px] opacity-20 mix-blend-overlay z-0 pointer-events-none"></div>
+
+      {/* Top and Bottom Fading Gradients for Seamless Blending */}
+      <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#020305] via-[#020305]/80 to-transparent z-0 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#020305] via-[#020305]/80 to-transparent z-0 pointer-events-none"></div>
+
+      {/* Edge Vignette */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_40%,_#020305_100%)] opacity-95 z-0 pointer-events-none"></div>
+
+      <div className="relative z-10 max-w-6xl mx-auto text-center flex flex-col items-center gap-6">
+        <h2 className="font-serif text-3xl sm:text-4xl md:text-6xl lg:text-7xl text-text-main leading-tight mb-4 tracking-tight drop-shadow-lg">
           La mayoría improvisa.<br />
           <span className="text-hover-red italic">Los estratégicos se preparan.</span>
         </h2>
@@ -222,80 +265,34 @@ const Manifesto = () => {
   );
 };
 
-const MigrationMapBackground = () => (
-  <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none flex items-center justify-center">
-    {/* Soft Radial Gradient for depth behind the polaroids */}
-    <div className="absolute top-[60%] lg:top-1/2 left-[50%] lg:left-[75%] -translate-x-1/2 -translate-y-1/2 w-[600px] lg:w-[900px] h-[600px] lg:h-[900px] bg-main-red rounded-full blur-[100px] lg:blur-[150px] opacity-[0.05] md:opacity-[0.03]"></div>
 
-    {/* World Map Silhouette Background */}
-    <div className="absolute inset-0 bg-[url('/world-map.png')] bg-cover bg-center md:bg-contain bg-no-repeat opacity-[0.08] mix-blend-screen" style={{ maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 80%)', WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, transparent 80%)' }}></div>
+const CinematicCloudBackground = () => (
+  <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+    {/* Base dark tone matching the site */}
+    <div className="absolute inset-0 bg-[#020305] opacity-100"></div>
 
-    <svg className="absolute w-[250%] md:w-[120%] h-full opacity-60 mix-blend-screen" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice">
-      <defs>
-        <linearGradient id="flight-path" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#4B5563" stopOpacity="0.1" />
-          <stop offset="100%" stopColor="#D90429" stopOpacity="1" />
-        </linearGradient>
-        <filter id="dot-glow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="3" result="blur" />
-          <feComposite in="SourceGraphic" in2="blur" operator="over" />
-        </filter>
-      </defs>
+    {/* Abstract Crystal Texture Background (Responsive & Unaltered) */}
+    <div className="absolute inset-0 w-full h-full pt-4 lg:pt-0 flex flex-col lg:flex-row items-start lg:items-center justify-center lg:justify-center">
+      <picture className="w-full h-full flex items-start lg:items-center justify-center">
+        <source media="(min-width: 1024px)" srcSet="/fundo-desktop-centro.png" />
+        <img
+          src="/fundo-mobile-centro.png"
+          alt="Atmospheric Energy Background"
+          className="w-full max-w-[500px] lg:max-w-none lg:w-full h-auto lg:h-full mx-auto object-contain object-top lg:object-cover lg:object-center opacity-100"
+        />
+      </picture>
+    </div>
 
-      <g transform="translate(150, 50)">
-        {/* Flight Routes - LATAM to Global */}
-        <g fill="none" stroke="url(#flight-path)" strokeWidth="1.5" strokeDasharray="4 4" className="opacity-70 animate-pulse">
-          {/* BOG (250, 240) -> MIA (220, 160) */}
-          <path d="M250 240 Q 260 190 220 160" />
-          {/* BOG (250, 240) -> MAD (490, 120) */}
-          <path d="M250 240 Q 350 140 490 120" />
-
-          {/* MDE (245, 250) -> YYZ (250, 70) */}
-          <path d="M245 250 Q 280 150 250 70" />
-
-          {/* LIM (220, 310) -> MIA (220, 160) */}
-          <path d="M220 310 Q 180 230 220 160" />
-          {/* LIM (220, 310) -> LIS (470, 135) */}
-          <path d="M220 310 Q 340 250 470 135" />
-
-          {/* EZE (280, 440) -> MAD (490, 120) */}
-          <path d="M280 440 Q 450 300 490 120" />
-          {/* EZE (280, 440) -> MIA (220, 160) */}
-          <path d="M280 440 Q 350 280 220 160" />
-        </g>
-
-        {/* Cities - LATAM Origins (Grey) */}
-        <g fill="#9CA3AF" opacity="0.6">
-          <circle cx="250" cy="240" r="2.5" /> {/* BOG */}
-          <circle cx="245" cy="250" r="2.5" /> {/* MDE */}
-          <circle cx="220" cy="310" r="2.5" /> {/* LIM */}
-          <circle cx="280" cy="440" r="2.5" /> {/* EZE */}
-        </g>
-
-        {/* Cities - Destinations (Glowing Red) */}
-        <g fill="#D90429" filter="url(#dot-glow)">
-          <circle cx="220" cy="160" r="3.5" /> {/* MIA */}
-          <circle cx="250" cy="70" r="3.5" />  {/* YYZ */}
-          <circle cx="490" cy="120" r="3.5" /> {/* MAD */}
-          <circle cx="470" cy="135" r="3.5" /> {/* LIS */}
-        </g>
-
-        {/* Destination Labels */}
-        <g fill="#FFFFFF" fontSize="10" fontFamily="sans-serif" opacity="0.4" letterSpacing="1">
-          <text x="200" y="150">MIA</text>
-          <text x="260" y="65">YYZ</text>
-          <text x="500" y="115">MAD</text>
-          <text x="480" y="150">LIS</text>
-        </g>
-      </g>
-    </svg>
+    {/* Top and Bottom gradient fades for absolute perfect blending */}
+    <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#020305] via-[#020305]/80 to-transparent opacity-100"></div>
+    <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#020305] via-[#020305]/80 to-transparent opacity-100"></div>
   </div>
 );
 
 const Authority = () => {
   return (
-    <section id="autoridad" className="w-full py-8 md:py-16 px-4 bg-bg-elevated relative z-10 border-y border-white/5 overflow-hidden">
-      <MigrationMapBackground />
+    <section id="autoridad" className="w-full py-8 md:py-16 px-4 bg-[#020305] relative z-10 overflow-hidden">
+      <CinematicCloudBackground />
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center relative z-10">
         <div className="order-2 lg:order-1 flex flex-col gap-6 md:gap-8">
           <h2 className="font-serif text-4xl md:text-5xl text-main-red">No fue suerte.</h2>
@@ -309,8 +306,8 @@ const Authority = () => {
           </div>
         </div>
 
-        {/* Increased base height for mobile to allow vertical spread */}
-        <div className="order-1 lg:order-2 relative w-full h-[450px] md:h-[550px] lg:h-[600px] flex items-center justify-center lg:justify-end mt-8 lg:mt-0 lg:pr-12">
+        {/* Adjusted base height for mobile to fit tighter cluster */}
+        <div className="order-1 lg:order-2 relative w-full h-[350px] sm:h-[450px] md:h-[550px] lg:h-[600px] flex items-center justify-center lg:justify-end mt-8 lg:mt-0 lg:pr-12">
           {[
             "/1.png",
             "/2.png",
@@ -320,35 +317,34 @@ const Authority = () => {
             const rotations = ['-rotate-[14deg]', 'rotate-[4deg]', '-rotate-[8deg]', 'rotate-[16deg]'];
             const hoverRotations = ['group-hover:-rotate-[6deg]', 'group-hover:rotate-0', 'group-hover:-rotate-[2deg]', 'group-hover:rotate-[6deg]'];
 
-            // Mobile spread adjusted to form a cluster, Desktop remains pushed right
+            // Tighter spread using fixed rems on mobile to avoid screen cut-off and expose background
             const xOffsets = [
-              '-translate-x-[40%] md:-translate-x-[50%] lg:-translate-x-[70%]',
-              '-translate-x-[5%] md:-translate-x-[10%] lg:-translate-x-[10%]',
-              'translate-x-[30%] md:translate-x-[40%] lg:translate-x-[50%]',
-              'translate-x-[60%] md:translate-x-[80%] lg:translate-x-[110%]'
+              '-translate-x-20 sm:-translate-x-24 md:-translate-x-32 lg:-translate-x-[70%]',
+              '-translate-x-6 sm:-translate-x-8 md:-translate-x-12 lg:-translate-x-[10%]',
+              'translate-x-6 sm:translate-x-8 md:translate-x-12 lg:translate-x-[50%]',
+              'translate-x-20 sm:translate-x-24 md:translate-x-32 lg:translate-x-[110%]'
             ];
 
-            // Vertical waterfall for mobile to bridge the gap down to the text
             const yOffsets = [
-              '-translate-y-12 md:-translate-y-6 lg:translate-y-8',
-              'translate-y-4 md:translate-y-6 lg:-translate-y-10',
-              'translate-y-20 md:translate-y-24 lg:translate-y-14',
-              'translate-y-36 md:translate-y-32 lg:-translate-y-6'
+              '-translate-y-12 sm:-translate-y-16 md:-translate-y-8 lg:translate-y-8',
+              '-translate-y-2 sm:translate-y-0 md:translate-y-4 lg:-translate-y-10',
+              'translate-y-8 sm:translate-y-16 md:translate-y-20 lg:translate-y-14',
+              'translate-y-20 sm:translate-y-32 md:translate-y-36 lg:-translate-y-6'
             ];
             const zIndexes = ['z-10', 'z-20', 'z-30', 'z-40'];
 
             return (
-              // Outer wrapper handles absolute spread and z-index elevation on hover
+              // Forced !z-[60] on hover to guarantee it jumps to front
               <div
                 key={i}
-                className={`absolute ${xOffsets[i]} ${yOffsets[i]} ${zIndexes[i]} hover:z-50 group flex items-center justify-center transition-all duration-300`}
+                className={`absolute ${xOffsets[i]} ${yOffsets[i]} ${zIndexes[i]} hover:!z-[60] group flex items-center justify-center transition-all duration-300`}
                 style={{
                   perspective: '1200px'
                 }}
               >
-                {/* Inner div: Increased base width for mobile from w-44 to w-52 */}
+                {/* Reduced mobile sizes so they fit the screen width */}
                 <div
-                  className={`w-52 sm:w-60 md:w-64 lg:w-[280px] bg-[#F5F6F8] p-3 pb-12 sm:p-4 sm:pb-16 md:p-5 md:pb-20 shadow-[0_15px_30px_rgba(0,0,0,0.6)] transition-all duration-500 ease-out cursor-pointer group-hover:scale-[1.12] md:group-hover:scale-[1.2] group-hover:-translate-y-8 group-hover:shadow-[0_45px_100px_rgba(0,0,0,1)] ${rotations[i]} ${hoverRotations[i]} border border-white/10`}
+                  className={`w-40 sm:w-48 md:w-56 lg:w-[280px] bg-[#F5F6F8] p-2.5 pb-10 sm:p-3 sm:pb-12 md:p-4 md:pb-16 lg:p-5 lg:pb-20 shadow-[0_15px_30px_rgba(0,0,0,0.6)] transition-all duration-500 ease-out cursor-pointer group-hover:scale-[1.15] md:group-hover:scale-[1.2] group-hover:-translate-y-6 md:group-hover:-translate-y-8 group-hover:shadow-[0_45px_100px_rgba(0,0,0,1)] ${rotations[i]} ${hoverRotations[i]} border border-white/10`}
                   style={{
                     transformStyle: 'preserve-3d',
                   }}
@@ -418,19 +414,19 @@ const ActsStructure = () => {
   ];
 
   return (
-    <section id="estructura" ref={container} className="w-full py-32 bg-bg-deep relative z-10 pb-[50vh]">
-      <div className="max-w-4xl mx-auto mb-32 text-center px-4">
-        <h2 className="font-serif text-4xl md:text-5xl text-text-main mb-6">La <span className="text-main-red italic">Estructura</span></h2>
-        <p className="font-sans text-xl text-text-muted">Desarrollado en 7 días accionables.</p>
+    <section id="estructura" ref={container} className="w-full py-32 bg-[#020305] relative z-10 pb-[50vh]">
+      <div className="max-w-6xl mx-auto mb-32 text-center px-4">
+        <h2 className="font-serif text-4xl md:text-5xl lg:text-7xl text-text-main mb-6">La <span className="text-main-red italic">Estructura</span></h2>
+        <p className="font-sans text-xl lg:text-2xl text-text-muted">Desarrollado en 7 días accionables.</p>
       </div>
 
-      <div className="max-w-4xl mx-auto relative px-4">
+      <div className="max-w-6xl mx-auto relative px-4">
         {actsData.map((act, idx) => (
           <div key={idx} className="act-card w-full h-[80vh] flex items-center justify-center mb-[10vh] relative origin-top">
-            <div className="w-full bg-bg-elevated border border-white/5 rounded-[2.5rem] p-8 md:p-16 flex flex-col justify-center shadow-[0_-10px_40px_rgba(11,11,13,0.9)]">
-              <div className="text-hover-red font-serif text-2xl mb-4 italic">0{idx + 1}</div>
-              <h3 className="font-serif text-3xl md:text-4xl text-text-main mb-4">{act.title}</h3>
-              <p className="font-sans text-xl text-text-muted leading-relaxed max-w-2xl">{act.desc}</p>
+            <div className="w-full bg-bg-elevated border border-white/5 rounded-[3rem] p-10 md:p-20 flex flex-col justify-center shadow-[0_-10px_40px_rgba(11,11,13,0.9)]">
+              <div className="text-hover-red font-serif text-3xl md:text-4xl mb-6 italic opacity-80">0{idx + 1}</div>
+              <h3 className="font-serif text-4xl md:text-5xl lg:text-6xl text-text-main mb-6 tracking-tight leading-none">{act.title}</h3>
+              <p className="font-sans text-xl lg:text-2xl text-text-muted/90 leading-relaxed max-w-4xl">{act.desc}</p>
             </div>
           </div>
         ))}
@@ -441,28 +437,28 @@ const ActsStructure = () => {
 
 const Exclusion = () => {
   return (
-    <section className="w-full py-32 px-4 bg-bg-deep border-t border-white/5 relative z-10">
-      <div className="max-w-3xl mx-auto flex flex-col">
-        <h2 className="font-serif text-3xl md:text-5xl text-text-main mb-12">
+    <section className="w-full py-32 px-4 bg-[#020305] relative z-10">
+      <div className="max-w-5xl mx-auto flex flex-col items-center text-center">
+        <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl text-text-main mb-16 tracking-tight">
           Esto <span className="text-cta-critical">NO</span> es para todos.
         </h2>
 
-        <div className="w-full flex flex-col gap-6 mb-16">
-          <div className="bg-[#1A1A1E]/50 p-6 rounded-[2.5rem] border border-white/5 flex items-start gap-4">
-            <div className="w-2 h-2 rounded-full bg-cta-critical mt-2 shrink-0"></div>
-            <p className="font-sans text-text-muted text-lg">Personas que solo buscan motivación para salir.</p>
+        <div className="w-full max-w-3xl flex flex-col gap-5 mb-20 text-left">
+          <div className="bg-[#1A1A1E]/50 p-6 md:p-8 rounded-[2.5rem] border border-white/5 flex items-start gap-5 transition-colors hover:bg-white/[0.02]">
+            <div className="w-2.5 h-2.5 rounded-full bg-cta-critical mt-2.5 shrink-0 shadow-[0_0_10px_rgba(217,4,41,0.5)]"></div>
+            <p className="font-sans text-text-muted text-lg md:text-xl leading-relaxed">Personas que solo buscan motivación para salir.</p>
           </div>
-          <div className="bg-[#1A1A1E]/50 p-6 rounded-[2.5rem] border border-white/5 flex items-start gap-4">
-            <div className="w-2 h-2 rounded-full bg-cta-critical mt-2 shrink-0"></div>
-            <p className="font-sans text-text-muted text-lg">Quienes creen que, llegando, 'todo saldrá bien' por arte de magia.</p>
+          <div className="bg-[#1A1A1E]/50 p-6 md:p-8 rounded-[2.5rem] border border-white/5 flex items-start gap-5 transition-colors hover:bg-white/[0.02]">
+            <div className="w-2.5 h-2.5 rounded-full bg-cta-critical mt-2.5 shrink-0 shadow-[0_0_10px_rgba(217,4,41,0.5)]"></div>
+            <p className="font-sans text-text-muted text-lg md:text-xl leading-relaxed">Quienes creen que, llegando, 'todo saldrá bien' por arte de magia.</p>
           </div>
-          <div className="bg-[#1A1A1E]/50 p-6 rounded-[2.5rem] border border-white/5 flex items-start gap-4">
-            <div className="w-2 h-2 rounded-full bg-cta-critical mt-2 shrink-0"></div>
-            <p className="font-sans text-text-muted text-lg">Personas que quieren atajos mágicos o sistemas ilegales.</p>
+          <div className="bg-[#1A1A1E]/50 p-6 md:p-8 rounded-[2.5rem] border border-white/5 flex items-start gap-5 transition-colors hover:bg-white/[0.02]">
+            <div className="w-2.5 h-2.5 rounded-full bg-cta-critical mt-2.5 shrink-0 shadow-[0_0_10px_rgba(217,4,41,0.5)]"></div>
+            <p className="font-sans text-text-muted text-lg md:text-xl leading-relaxed">Personas que quieren atajos mágicos o sistemas ilegales.</p>
           </div>
         </div>
 
-        <p className="font-sans text-xl text-hover-red font-medium">
+        <p className="font-sans text-2xl lg:text-3xl text-hover-red font-medium italic drop-shadow-md">
           Es para quien quiere salir... pero quiere hacerlo bien.
         </p>
       </div>
@@ -472,7 +468,7 @@ const Exclusion = () => {
 
 const OfferAndUrgency = () => {
   return (
-    <section id="oferta" className="w-full relative z-20 py-32 px-4 bg-[#08080A] overflow-hidden flex flex-col items-center">
+    <section id="oferta" className="w-full relative z-20 py-32 px-4 bg-[#020305] overflow-hidden flex flex-col items-center">
 
       {/* Background Eclipse Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-[600px] bg-[#E10600] rounded-[100%] blur-[120px] opacity-15 pointer-events-none"></div>
@@ -550,7 +546,7 @@ const OfferAndUrgency = () => {
 
 const SafePurchase = () => {
   return (
-    <section className="w-full bg-[#08080A] py-16 px-4 border-t border-white/5 relative z-20">
+    <section className="w-full bg-[#020305] py-16 px-4 relative z-20">
       <div className="max-w-5xl mx-auto">
         {/* Mobile: stacked; Desktop: 3 columns */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-0 md:divide-x md:divide-white/10">
@@ -596,7 +592,7 @@ const SafePurchase = () => {
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-[#08080A] rounded-t-[2.5rem] py-12 px-6 border-t border-hover-red/20 relative z-20">
+    <footer className="w-full bg-[#020305] rounded-t-[2.5rem] py-12 px-6 relative z-20">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="font-serif text-xl tracking-wide text-text-main">
           RUTA REAL<span className="text-main-red">.</span>
@@ -629,7 +625,7 @@ const SocialProof = () => {
   const scrollTracks = [...testimonials, ...testimonials, ...testimonials];
 
   return (
-    <section className="w-full py-32 bg-[#08080A] relative z-10 overflow-hidden border-t border-white/5">
+    <section className="w-full py-32 bg-[#020305] relative z-10 overflow-hidden">
       <div className="max-w-4xl mx-auto text-center px-4 mb-16 relative z-20">
         <h2 className="font-sans text-[#E10600] text-sm font-bold tracking-[0.2em] uppercase mb-4">
           Cientos ya salieron de la ignorancia estratégica
@@ -677,8 +673,8 @@ const SocialProof = () => {
       </div>
 
       {/* Left/Right Fade Masks for smooth scrolling disappear effect */}
-      <div className="absolute left-0 top-0 w-16 md:w-48 h-full bg-gradient-to-r from-[#08080A] to-transparent z-20 pointer-events-none"></div>
-      <div className="absolute right-0 top-0 w-16 md:w-48 h-full bg-gradient-to-l from-[#08080A] to-transparent z-20 pointer-events-none"></div>
+      <div className="absolute left-0 top-0 w-16 md:w-48 xl:w-96 h-full bg-gradient-to-r from-[#020305] via-[#020305]/80 to-transparent z-20 pointer-events-none fade-mask-left"></div>
+      <div className="absolute right-0 top-0 w-16 md:w-48 xl:w-96 h-full bg-gradient-to-l from-[#020305] via-[#020305]/80 to-transparent z-20 pointer-events-none fade-mask-right"></div>
     </section>
   );
 };
